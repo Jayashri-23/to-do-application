@@ -6,7 +6,65 @@
         body{
             background-color:#d2d2ff ;
         }
+        body{
+            background-color:#d2d2ff ;
+        }
+      .todo-items {
+        border: 0.6px solid ;
+        background-color: rgb(240, 235, 235);
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+       }
+       .todo-items:hover{
+        box-shadow: 2px 2px 5px rgb(72, 70, 70);
+   
+       }
+       .to-do-items-input{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 15px 40px;
+        background-color: rgb(66, 66, 141);
+        display: flex;
+        justify-content: center;
         
+        
+       }
+        .todo-container{
+            height: 500px;
+            overflow-y: scroll;
+        }
+        .heading{
+            text-align: center;
+            margin: 0px;
+            color:rgb(11, 11, 74);
+            font-size: 60px;
+        }
+        .delete-todo-item{
+            height: 20px;
+        }
+        .add-todo-btn{
+            border-radius: 20px;
+            padding: 10px;
+            margin-left: 50px;
+            cursor: pointer;
+        }
+        .add-todo-btn:hover{
+            transform: scale(1.1);
+        }
+        .new-todo-item{
+            border-radius: 20px;
+            width: 350px;
+            padding: 10px;
+            outline: none;
+            
+        }
     </style>
   </head>
   <body>
