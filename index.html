@@ -3,11 +3,11 @@
   <head>
     <title>To Do Application</title>
     <style>
-        body{
-            background-color:#d2d2ff ;
-        }
+      body {
+        background-color: rgb(221, 221, 237);
+      }
       .todo-items {
-        border: 0.6px solid ;
+        border: 0.6px solid;
         background-color: white;
         margin: 10px;
         padding: 10px;
@@ -16,103 +16,121 @@
         display: flex;
         justify-content: space-between;
         cursor: pointer;
-       }
-       .todo-items:hover{
+      }
+      .todo-items:hover {
         box-shadow: 2px 2px 5px rgb(72, 70, 70);
-       }
-       .to-do-items-input{
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+      }
+      .to-do-items-input {
         padding: 15px 40px;
-        background-color: rgb(66, 66, 141);
         display: flex;
-        justify-content: center;  
-       }
-        .todo-container{
-            height: 500px;
-            overflow-y: scroll;
-        }
-        .heading{
-            text-align: center;
-            margin: 0px;
-            color:rgb(11, 11, 74);
-            font-size: 60px;
-        }
-        .delete-todo-item{
-            height: 20px;
-        }
-        .add-todo-btn{
-            border-radius: 20px;
-            padding: 10px;
-            margin-left: 50px;
-            cursor: pointer;
-        }
-        .add-todo-btn:hover{
-            transform: scale(1.1);
-        }
-        .new-todo-item{
-            border-radius: 20px;
-            width: 350px;
-            padding: 10px;
-            outline: none;    
-        }
+        justify-content: center;
+      }
+      .todo-container {
+        height: 500px;
+        overflow-y: scroll;
+      }
+      .heading {
+        text-align: center;
+        margin: 0px;
+        color: rgb(11, 11, 74);
+        font-size: 60px;
+      }
+      .delete-todo-item {
+        height: 20px;
+      }
+      .add-todo-btn {
+        border-radius: 20px;
+        padding: 10px;
+        margin-left: 50px;
+        cursor: pointer;
+        width: 100px;
+      }
+      .add-todo-btn:hover {
+        transform: scale(1.1);
+        background-color: rgb(196, 196, 217);
+      }
+      .new-todo-item {
+        border-radius: 20px;
+        width: 350px;
+        padding: 10px;
+        outline: none;
+      }
+      .main-container {
+        border: 0.5px solid black;
+        width: 550px;
+        margin-left: 500px;
+        margin-top: 20px;
+        border-radius: 10px;
+        padding: 13px;
+        background-color: #d2d2ff;
+      }
     </style>
   </head>
   <body>
     <h1 class="heading">To Do App</h1>
-    <div id="todo-container" class="todo-container"></div>
+    <div class="main-container">
+      <div id="todo-container" class="todo-container"></div>
 
-    <div class="to-do-items-input">
-      <input type="text" id="new-todo-item" class="new-todo-item" placeholder="New To Do Item" />
-   
-     <button id="add-todo-btn" class="add-todo-btn" onclick="addToDoItem()">Add To Do</button>
+      <div class="to-do-items-input">
+        <input
+          type="text"
+          id="new-todo-item"
+          class="new-todo-item"
+          placeholder="New To Do Item"
+        />
+
+        <button id="add-todo-btn" class="add-todo-btn" onclick="addToDoItem()">
+          Add To Do
+        </button>
+      </div>
     </div>
     <script>
-      const TODO_ITEMS =["Read Books","Go To College","Buy Groceries"];
+      const TODO_ITEMS = ["Read Books", "Go To College", "Buy Groceries"];
 
       const todoContainer = document.getElementById("todo-container");
 
-      function loadToDoItem(){
+      function loadToDoItem() {
         const TODO_ITEMS = JSON.parse(
-            localStorage.getItem("TODO_ITEMS") || "[]",);
+          localStorage.getItem("TODO_ITEMS") || "[]",
+        );
 
         todoContainer.innerHTML = "";
 
-        for(let i=0; i < TODO_ITEMS.length; i++){
+        for (let i = 0; i < TODO_ITEMS.length; i++) {
+          const currentItem = TODO_ITEMS[i];
 
-            const currentItem =TODO_ITEMS[i];
-
-            todoContainer.innerHTML = todoContainer.innerHTML + `<div class="todo-items">${currentItem} <img src='bin.png' class='delete-todo-item' onclick='deleteToDoItem(${i})'/></div>` ;
+          todoContainer.innerHTML =
+            todoContainer.innerHTML +
+            `<div class="todo-items">${currentItem} <img src='bin.png' class='delete-todo-item' onclick='deleteToDoItem(${i})'/></div>`;
         }
       }
-    
+
+      loadToDoItem();
+
+      function addToDoItem() {
+        const todoinputElement = document.getElementById("new-todo-item");
+
+        const storedToDoItems = JSON.parse(
+          localStorage.getItem("TODO_ITEMS") || "[]",
+        );
+
+        storedToDoItems.push(todoinputElement.value);
+
+        localStorage.setItem("TODO_ITEMS", JSON.stringify(storedToDoItems));
+
         loadToDoItem();
-
-      function addToDoItem(){
-          const todoinputElement = document.getElementById("new-todo-item");
-
-          const storedToDoItems =JSON.parse(localStorage.getItem("TODO_ITEMS") || "[]");
-
-          storedToDoItems.push(todoinputElement.value);
-
-          localStorage.setItem("TODO_ITEMS" , JSON.stringify(storedToDoItems));
-
-           loadToDoItem();
-          todoinputElement.value="";
+        todoinputElement.value = "";
       }
 
-      function deleteToDoItem(index){
-        const storedToDoItems =JSON.parse(
-            localStorage.getItem("TODO_ITEMS") || "[]"
+      function deleteToDoItem(index) {
+        const storedToDoItems = JSON.parse(
+          localStorage.getItem("TODO_ITEMS") || "[]",
         );
-        
+
         storedToDoItems.splice(index, 1);
-          localStorage.setItem("TODO_ITEMS" , JSON.stringify(storedToDoItems));
+        localStorage.setItem("TODO_ITEMS", JSON.stringify(storedToDoItems));
 
-          loadToDoItem();
-
+        loadToDoItem();
       }
     </script>
   </body>
