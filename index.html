@@ -6,9 +6,6 @@
         body{
             background-color:#d2d2ff ;
         }
-        body{
-            background-color:#d2d2ff ;
-        }
       .todo-items {
         border: 0.6px solid ;
         background-color: rgb(240, 235, 235);
@@ -22,7 +19,6 @@
        }
        .todo-items:hover{
         box-shadow: 2px 2px 5px rgb(72, 70, 70);
-   
        }
        .to-do-items-input{
         position: fixed;
@@ -32,9 +28,7 @@
         padding: 15px 40px;
         background-color: rgb(66, 66, 141);
         display: flex;
-        justify-content: center;
-        
-        
+        justify-content: center;  
        }
         .todo-container{
             height: 500px;
@@ -62,8 +56,7 @@
             border-radius: 20px;
             width: 350px;
             padding: 10px;
-            outline: none;
-            
+            outline: none;    
         }
     </style>
   </head>
@@ -80,8 +73,6 @@
       const TODO_ITEMS =["Read Books","Go To College","Buy Groceries"];
 
       const todoContainer = document.getElementById("todo-container");
-
-
 
       function loadToDoItem(){
         const TODO_ITEMS = JSON.parse(
